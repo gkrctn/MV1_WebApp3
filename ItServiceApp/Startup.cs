@@ -1,4 +1,5 @@
 using ItServiceApp.Data;
+using ItServiceApp.MapperProfiles;
 using ItServiceApp.Models.Identity;
 using ItServiceApp.Services;
 using Microsoft.AspNetCore.Builder;
@@ -67,7 +68,10 @@ namespace ItServiceApp
             });
 
             services.AddTransient<IEmailSender, EmailSender>();
-
+            services.AddAutoMapper(options =>
+            {
+                options.AddProfile(typeof(PeymentProfile));
+            });
             services.AddControllersWithViews();
         }
 
