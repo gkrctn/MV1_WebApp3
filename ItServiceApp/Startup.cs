@@ -67,7 +67,9 @@ namespace ItServiceApp
 
             });
 
-            services.AddTransient<IEmailSender, EmailSender>();
+            services.AddTransient<IEmailSender, EmailSender>(); // loose couping
+            services.AddScoped<IPaymentService, IyzicoPaymentService>(); // loose couping
+            //services.AddScoped<IPaymentService, GarantiPaymentServices>(); // loose couping
             services.AddAutoMapper(options =>
             {
                 options.AddProfile(typeof(PeymentProfile));

@@ -1,10 +1,13 @@
 ﻿using AutoMapper;
 using ItServiceApp.Models.Identity;
 using ItServiceApp.Models.Payment;
+using Iyzipay.Model;
+using Iyzipay.Request;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -31,10 +34,37 @@ namespace ItServiceApp.Services
             };
         }
 
+        private string GenerateConversationId()
+        {
+            return MUsefulMethods.StringHelpers.GenerateUniqueCode();
+        }
+
 
         public InstallmentModel CheckInstallments(string binNumber, decimal price)
-        {
-            throw new NotImplementedException();
+        {   
+            var conversationId = GenerateConversationId();
+            var request = new RetrieveInstallmentInfoRequest
+            {
+                Locale = Locale.TR.ToString(),
+                ConversationId = conversationId,
+                BinNumber = binNumber,
+                Price = price.ToString(new CultureInfo("en-US")),
+            };
+
+            var result = InstallmentInfo.Retrieve(request, _options);
+            if (result.Status == "failure")
+            {
+                throw new Exception(result.ErrorMessage);
+            }
+
+            if (result.ConversationId != conversationId)
+            {
+                throw new Exception("Hatalı istek oluturuldu");
+            }
+
+            var resultModel = _mapper.Map<InstallmentModel>(result.InstallmentDetails[0]);
+
+            return resultModel;
         }
 
         public PaymentResponseModel Pay(PaymentModel model)
