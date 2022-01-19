@@ -17,7 +17,17 @@ namespace ItServiceApp.Controllers
         }
         public IActionResult Index()
         {
+            //var result = _paymentService.CheckInstallments
+            //    ("4157920000000002", 1000);
+            
+
+
             return View();
+        }
+        [HttpPost]
+        public IActionResult CheckInstallment(string binNumber)
+        {
+            var result = _paymentService.CheckInstallments(binNumber, 1000);
         }
     }
 }
