@@ -104,7 +104,11 @@ namespace ItServiceApp.Services
         }
 
         public InstallmentModel CheckInstallments(string binNumber, decimal price)
-        {   
+        {
+            if (binNumber.Length>6)
+            {
+                binNumber = binNumber.Substring(0, 6);
+            }
             var conversationId = GenerateConversationId();
             var request = new RetrieveInstallmentInfoRequest
             {
@@ -132,7 +136,9 @@ namespace ItServiceApp.Services
 
         public PaymentResponseModel Pay(PaymentModel model)
         {
-            throw new NotImplementedException();
+            var request = this.InitialPaymentRequest(model);
+            var payment = Payment.Create(request, _options);
+            return _mapper.Map<PaymentResponseModel>(payment);
         }
     }
 }
