@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace ItServiceApp.Areas.Admin.Controllers
 {
     [Authorize(Roles="Admin")]
-    public class ManegeController : Controller
+    public class ManageController : Controller
     {
         public IActionResult Index()
         {
