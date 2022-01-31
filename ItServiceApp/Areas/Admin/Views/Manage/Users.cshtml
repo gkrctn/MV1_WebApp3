@@ -1,0 +1,60 @@
+﻿@{ 
+    ViewBag.Title = "Tüm kullanıcılar";
+
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h4 class="card-title">Kullanıcı Detayları</h4>
+                        </div><!--end col-->
+                    </div><!--end row-->
+                </div><!--end card-header-->
+                <div class="card-body">
+                    <div id="dxGrid"></div>
+                </div><!--end card-body-->
+            </div><!--end card-->
+        </div><!--end col-->
+    </div><!--end row-->
+</div>
+
+@section Scripts
+{
+<script src="~/vendor/devextreme-aspnet-data/js/dx.aspnet.data.js"></script>
+<script>
+    var dataGrid = null;
+    $(() => {
+        var url = '../../../api/userapi';
+        dataGrid = $("#dxGrid").dxDataGrid({
+            remoteOperations: { paging: true, filtering: true, sorting: true, grouping: true, summary: true, groupPaging: true },
+            dataSource: DevExpress.data.AspNet.createStore({
+                key: 'id',
+                loadUrl: `${url}/get`,
+                updateUrl: `${url}/update`,
+                onBeforeSend(method, ajaxOptions) {
+                    ajaxOptions.xhrFields = withCredentials: true
+                };
+                cosole.log(method);
+                console.log(ajaxOptions);
+            }
+            });
+            editing: {
+                mode: 'from',
+                allowUpdating: true
+            },
+            allowColumnResizing: true,
+            showColumnLines: true,
+            showRowLines: true,
+            rowAlternationalEnabled: true,
+            showBorders: true,
+            searchPanel: {
+
+            }
+
+        }).dxDataGrid("instance");;
+    });
+</script>
+}
