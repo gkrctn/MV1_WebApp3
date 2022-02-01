@@ -46,6 +46,7 @@ namespace ItServiceApp.Areas.Admin.Controllers
                 return BadRequest(ModelState.ToFullErrorString());
 
             var result = await _userManager.UpdateAsync(data);
+            return Ok(JsonResponseViewModel());
         }
     }
 }
