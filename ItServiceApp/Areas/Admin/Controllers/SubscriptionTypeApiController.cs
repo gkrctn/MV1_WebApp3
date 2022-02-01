@@ -5,6 +5,7 @@ using ItServiceApp.Models.Entities;
 using ItServiceApp.Models.Identity;
 using ItServiceApp.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -84,6 +85,20 @@ namespace ItServiceApp.Areas.Admin.Controllers
                     IsSuccess = false,
                     ErrorMessage = "Üyelik tipi güncellenemedi"
                 });
+            return Ok(new JsonResponseViewModel());
+        }
+        [HttpDelete]
+        public IActionResult Delete(Guid key)
+        {
+            var data = _dbContext.SubscriptionTypes.Find(key);
+            if (data == null)
+                return StatusCode(StatusCodes.Status409Conflict, "Üyelik tipi bulunamadı");
+
+            _dbContext.SubscriptionTypes.Remove(data);
+
+            var result = _dbContext.SaveChanges();
+            if (result == 0)
+                return BadRequest("Silme işlemi başarısız");
             return Ok(new JsonResponseViewModel());
         }
     }
