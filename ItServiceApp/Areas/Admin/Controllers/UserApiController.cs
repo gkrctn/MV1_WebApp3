@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using DevExtreme.AspNet.Data;
 using ItServiceApp.Extensions;
 using ItServiceApp.Models.Identity;
+using ItServiceApp.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -31,7 +32,7 @@ namespace ItServiceApp.Areas.Admin.Controllers
             return Ok(DataSourceLoader.Load(data, loadoptions));
         }
         [HttpPut]
-        public async Task<IActionResult> UpdateAsync(string key, string values)
+        public async Task<IActionResult> Update(string key, string values)
         {
             var data = _userManager.Users.FirstOrDefault(x => x.Id == key);
             if (data == null)
@@ -46,7 +47,7 @@ namespace ItServiceApp.Areas.Admin.Controllers
                 return BadRequest(ModelState.ToFullErrorString());
 
             var result = await _userManager.UpdateAsync(data);
-            return Ok(JsonResponseViewModel());
+            return Ok(new JsonResponseViewModel());
         }
     }
 }
