@@ -23,10 +23,10 @@
 
 <body>
     <!-- leftbar-tab-menu -->
-    @Html.Partial("_leftbar-tab-menu")
+    <partial name="Partials/_leftbar-tab-menu"></partial>
     <!-- end leftbar-tab-menu-->
     <!-- Top Bar Start -->
-    @Html.Partial("_top-bar")
+<partial name="Partials/_top-bar"></partial>
     <!-- Top Bar End -->
 
     <div class="page-wrapper">
@@ -41,7 +41,7 @@
             <partial name="Partials/_right-bar"></partial>
             <!-- end right bar -->
             <!--footer-->
-            @Html.Partial("_footer")
+<partial name="Partials/_footer"></partial>
             <!--end footer-->
         </div>
         <!-- end page content -->
@@ -56,11 +56,11 @@
     <script src="~/admin-assets/js/jquery.slimscroll.min.js"></script>
     <script src="~/admin-assets/plugins/apexcharts/apexcharts.min.js"></script>
     <script src="~/admin-assets/js/app.js"></script>
-    <script type="text/javascript" src="~/vendor/exceljs/dist/exceljs.min.js"></script>
-    <script type="text/javascript" src="~/vendor/file-saver/dist/fileSaver.min.js"></script>
-    <script type="text/javascript" src="~/vendor/jszip/dist/jszip.min.js"></script>
-    <script type="text/javascript" src="~/vendor/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="~/vendor/devextreme/dist/js/dx.all.js"></script>
+    <script src="~/vendor/exceljs/dist/exceljs.min.js"></script>
+    <script src="~/vendor/file-saver/dist/fileSaver.min.js"></script>
+    <script src="~/vendor/jszip/dist/jszip.min.js"></script>
+    <script src="~/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="~/vendor/devextreme/dist/js/dx.all.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
