@@ -27,15 +27,15 @@
     <script>
         var dataGrid = null;
         $(() => {
-            var url = '../../../api/userapi';
+            var url = '../../../api/subscriptiontypeapi';
             dataGrid = $("#dxGrid").dxDataGrid({
                 remoteOperations: { paging: true, filtering: true, sorting: true, grouping: true, summary: true, groupPaging: true },
                 dataSource: DevExpress.data.AspNet.createStore({
                     key: 'id',
                     loadUrl: `${url}/get`,
                     updateUrl: `${url}/update`,
-                    //insertUrl: `${url}/insert`,
-                    //deleteUrl: `${url}/delete`,
+                    insertUrl: `${url}/insert`,
+                    deleteUrl: `${url}/delete`,
                     onBeforeSend(method, ajaxOptions) {
                         ajaxOptions.xhrFields = { withCredentials: true };
                         console.log(method);
@@ -44,7 +44,9 @@
                 }),
                 editing: {
                     mode: 'form',
-                    allowUpdating: true
+                    allowUpdating: true,
+                    allowAdding: true,
+                    allowDeleting: true
                 },
                 allowColumnResizing: true,
                 showColumnLines: true,
@@ -65,7 +67,7 @@
                 },
                 export: {
                     enabled: true,
-                    fileName: `Tüm Kullanıcılar_${parseInt(Math.random() * 1000000000)}`,
+                    fileName: `Tüm Üyelikler_${parseInt(Math.random() * 1000000000)}`,
                     allowExportSelectedData: true
                 },
                 paging: {
@@ -82,7 +84,7 @@
                 columns: [
                     {
                         caption: 'Id',
-                        dataField: 'id',
+                        dataField: "id",
                         visible: false,
                         allowFiltering: false,
                         formItem: { visible: false }
@@ -92,29 +94,28 @@
                         dataField: "name"
                     },
                     {
-                        caption: 'Soyad',
-                        dataField: "surname"
+                        caption: 'Açıklama',
+                        dataField: "description"
                     },
                     {
-                        caption: 'Kullanıcı Ad',
-                        dataField: "userName"
+                        caption: 'Ay',
+                        dataField: "month",
+                        dataType: "number"
                     },
                     {
-                        caption: 'Email',
-                        dataField: "email"
+                        caption: 'Fiyat',
+                        dataField: "price",
+                        dataType: "number",
+                        format: "#.00 ₺"
                     },
                     {
-                        caption: 'Email Onayı',
-                        dataField: "emailConfirmed",
-                        dataType : "boolean"
-                    },
-                    {
-                        dataField: "createdDate",
-                        caption: "Kayıt Tarihi",
-                        dataType: "datatime",
-                        format: 'dd/MM/yyyy HH:mm',
-                        sortOrder:"desc"
-                    },
+                        dataField: "createDate",
+                        caption:"Kayıt Tarihi",
+                        dataType:"datetime",
+                        format:"dd/MM/yyyy HH:mm"
+                        sortOrder:false
+
+                    }
                 ]
             }).dxDataGrid("instance");
         });
