@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ItServiceApp.Models.Entities
 {
@@ -10,6 +11,6 @@ namespace ItServiceApp.Models.Entities
         public int Month { get; set; }
         public decimal Price { get; set; }
 
-    }
 
+    }
 }

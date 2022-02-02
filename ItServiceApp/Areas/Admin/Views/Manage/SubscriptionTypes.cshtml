@@ -106,14 +106,15 @@
                         caption: 'Fiyat',
                         dataField: "price",
                         dataType: "number",
-                        format: "#.00 ₺"
+                        format: "#.## ₺"
                     },
                     {
-                        dataField: "createDate",
+                        dataField: "createdDate",
                         caption:"Kayıt Tarihi",
                         dataType:"datetime",
-                        format:"dd/MM/yyyy HH:mm"
-                        sortOrder:false
+                        format: "dd/MM/yyyy HH:mm",
+                        sortOrder: "desc",
+                        visible: false
 
                     }
                 ]
