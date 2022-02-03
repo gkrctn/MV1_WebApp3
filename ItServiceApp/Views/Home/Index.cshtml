@@ -1,4 +1,5 @@
 ﻿
+
 @{
     ViewBag.Title = "Anasayfa";
 }
@@ -66,4 +67,5 @@
 </section>
 <!--====== Banner Slider End ======-->
 
-<partial name="Partials/_PricingTable" />
+<partial name="Partials/_PricingTable" model="Model" />
+@await Component.InvokeAsync("PricingTable")

@@ -76,6 +76,7 @@ namespace ItServiceApp
             services.AddAutoMapper(options =>
             {
                 options.AddProfile(typeof(PeymentProfile));
+                options.AddProfile<EntityProfile>();
             });
             services.AddControllersWithViews()
                 .AddNewtonsoftJson(
