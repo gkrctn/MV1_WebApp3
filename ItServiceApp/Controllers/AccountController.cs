@@ -113,7 +113,7 @@ namespace ItServiceApp.Controllers
             {
                 ModelState.AddModelError(string.Empty, "Bir Hata oluştu");
                 return View(model);
-            }
+            }   
         }
         public async Task<IActionResult> ConfirmEmail(string userId, string code)
         {
@@ -272,7 +272,7 @@ namespace ItServiceApp.Controllers
             var user = await _userManager.FindByEmailAsync(email);
             if (user == null)
             {
-                ViewBag.Message = "Girdiğiniz email bulunamadu";
+                ViewBag.Message = "Girdiğiniz email bulunamadı";
             }
             else
             {
