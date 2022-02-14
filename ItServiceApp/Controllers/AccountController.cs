@@ -1,8 +1,9 @@
-﻿using ItServiceApp.Extensions;
+﻿using ItServiceApp.Business.Services.Email;
+using ItServiceApp.Core.Identity;
+using ItServiceApp.Core.Models;
+using ItServiceApp.Core.ViewModels;
+using ItServiceApp.Extensions;
 using ItServiceApp.Models;
-using ItServiceApp.Models.Identity;
-using ItServiceApp.Services;
-using ItServiceApp.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

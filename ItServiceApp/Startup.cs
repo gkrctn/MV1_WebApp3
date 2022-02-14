@@ -1,7 +1,8 @@
+using ItServiceApp.Business.MapperProfiles;
+using ItServiceApp.Business.Services.Email;
+using ItServiceApp.Business.Services.Payment;
+using ItServiceApp.Core.Identity;
 using ItServiceApp.Data;
-using ItServiceApp.MapperProfiles;
-using ItServiceApp.Models.Identity;
-using ItServiceApp.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
