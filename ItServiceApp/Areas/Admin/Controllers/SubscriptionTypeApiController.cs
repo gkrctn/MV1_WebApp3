@@ -58,7 +58,7 @@ namespace ItServiceApp.Areas.Admin.Controllers
                 return BadRequest(new JsonResponseViewModel
                 {
                     IsSuccess = false,
-                    ErrorMessage = "Yeni üyelik tipi kaydedilemedi."
+                    ErrorMessage = "Yeni üyelik tipi kaydedilemedi. "
                 });
             return Ok(new JsonResponseViewModel());
         }
